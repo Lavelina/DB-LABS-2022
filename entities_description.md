@@ -2,7 +2,6 @@
 ## Сущности
 - Клиент
 - Пекарь
-- Аккаунт
 - Изделие
 - Вид изделия
 - Состав
@@ -40,8 +39,6 @@
 |имя поля | тип | ограничения | описание |
 |:---:|:---:|:---:|:---:|
 | id | pk | auto increment; not null; unique | первичный ключ |
-| accountID | INT | not null | внешний ключ на аккаунт |
-| cartID | INT | not null | внешний ключ на корзину |
 | name | VARCHAR(50) | not null | имя клиента |
 | surname | VARCHAR(255) | not null | фамилия клиента |
 | email | VARCHAR(60)| not null | электронная почта |
@@ -50,17 +47,10 @@
 |имя поля | тип | ограничения | описание |
 |:---:|:---:|:---:|:---:|
 | id | pk | auto increment; not null; unique | первичный ключ |
-| accountID | INT | not null | внешний ключ на аккаунт |
 | name | VARCHAR(50) | not null | имя пекаря |
 | surname | VARCHAR(255) | not null | фамилия пекаря |
 | email | VARCHAR(60)| not null | электронная почта |
 
-## Аккаунт (Account)
-|имя поля | тип | ограничения | описание |
-|:---:|:---:|:---:|:---:|
-| id | pk | auto increment; not null; unique | первичный ключ |
-| login | VARCHAR(50) | not null; unique | логин |
-| password | VARCHAR(255) | not null | пароль |
 ## Изделие (Product)
 |имя поля | тип | ограничения | описание |
 |:---:|:---:|:---:|:---:|
@@ -84,6 +74,7 @@
 |имя поля | тип | ограничения | описание |
 |:---:|:---:|:---:|:---:|
 | id | pk | auto increment; not null; unique | первичный ключ |
+| name | VARCHAR(30) | not null | название ингредиента |
 | calories | float | not null | калорийность |
 | fat | float | not null | жиры |
 | protein | float | not null | белки |
@@ -92,18 +83,20 @@
 |имя поля | тип | ограничения | описание |
 |:---:|:---:|:---:|:---:|
 | id | pk | auto increment; not null; unique | первичный ключ |
-| orderID | INT | not null | внешний ключ на заказ |
+| сlientID | INT | not null | внешний ключ на клиента |
 ## Заказ (Orders)
 |имя поля | тип | ограничения | описание |
 |:---:|:---:|:---:|:---:|
 | id | pk | auto increment; not null; unique | первичный ключ |
-| productID | INT | not null | внешний ключ на изделие |
-| price | float | not null | стоимость заказа |
+| сlientID | INT | not null | внешний ключ на клиента |
+| cost | float | not null | стоимость заказа |
+| order_state | VARCHAR(30) | not null | состояние заказа |
 ## Отзыв (feedback)
 |имя поля | тип | ограничения | описание |
 |:---:|:---:|:---:|:---:|
 | id | pk | auto increment; not null; unique | первичный ключ |
 | clientID | INT | not null | внешний ключ на клиента |
+| productID | INT | not null | внешний ключ на продукт |
 | feedback | VARCHAR(1000) | not null | текст отзыва |
 ## Доставка (Delivery)
 |имя поля | тип | ограничения | описание |
